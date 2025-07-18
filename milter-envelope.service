@@ -1,0 +1,16 @@
+[Unit]
+Description=Envelope Rewriting Milter
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /usr/local/lib/milter/milter-envelope.py
+Restart=on-failure
+User=root
+Group=postfix
+WorkingDirectory=/var/spool/postfix
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
